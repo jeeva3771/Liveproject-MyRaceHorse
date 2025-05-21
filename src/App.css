@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,343 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+/* Header.css */
+.navbar {
+  padding: 10px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  padding: 0;
+  margin-right: 0; /* Remove default margin */
+}
+
+.navbar-brand img {
+  height: 30px;
+  max-height: 50%;
+}
+
+/* Navigation links */
+.navbar-nav .nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  padding: 0.5rem 0.8rem;
+  transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #e91e63;
+}
+
+/* Right navigation styling */
+.login-link {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.signup-btn {
+  background-color: #e91e63 !important; /* Use !important to override Bootstrap hover effects */
+  border-radius: 4px;
+  padding: 8px 16px !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  color: white !important; /* Ensure text is always white */
+  display: inline-block; /* Make sure it has proper dimensions */
+}
+
+/* Still include hover for subtle darkening effect, but keep it red */
+.signup-btn:hover {
+  background-color: #d81b60 !important; /* Slightly darker shade for visual feedback */
+  color: white !important;
+}
+
+/* Add these to ensure the button styling doesn't get overridden */
+.signup-btn:focus,
+.signup-btn:active {
+  background-color: #e91e63 !important;
+  color: white !important;
+  box-shadow: none !important; /* Remove Bootstrap's focus shadow */
+}
+/* Large screens (Desktop) */
+@media (min-width: 992px) {
+  .navbar-brand {
+    order: 0; /* Logo in the center */
+  }
+  
+  .left-nav {
+    order: -1; /* Left navigation appears before logo */
+    margin-right: 20px;
+    display: flex;
+  }
+  
+  .right-nav {
+    margin-left: 20px;
+    display: flex;
+  }
+  
+  /* Adjust spacing between items */
+  .navbar-nav .nav-item {
+    margin: 0 5px;
+  }
+}
+
+/* Medium and small screens (Tablet and Mobile) */
+@media (max-width: 991.98px) {
+  .navbar-brand {
+    margin-right: auto; /* Push logo to left */
+  }
+  
+  .navbar-toggler {
+    margin-left: auto; /* Push toggle button to right */
+  }
+  
+  .navbar-collapse {
+    margin-top: 1rem;
+  }
+  
+  /* Adjust mobile menu appearance */
+  .left-nav .nav-item,
+  .right-nav .nav-item {
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .left-nav .nav-item:last-child {
+    border-bottom: 2px solid #e1e1e1;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.7rem 0;
+  }
+  
+  .signup-btn {
+    display: inline-block;
+    margin: 10px 0;
+  }
+}
+
+/* Extra small screens (Small mobile) */
+@media (max-width: 575.98px) {
+  .navbar-brand img {
+    max-height: 30px;
+  }
+  
+  .navbar {
+    padding: 10px;
+  }
+}
+
+
+
+/*hero-horse*/
+/* Buy.css */
+.buy-page {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Hero Banner */
+.hero-banner {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Horse Listing */
+.horse-listing {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+/* Horse Image Column */
+.horse-image-column {
+  flex: 0 0 130px;
+  margin-right: 25px;
+}
+
+.horse-thumbnail {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Horse Details Column */
+.horse-details-column {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
+}
+
+.horse-header {
+  margin-bottom: 15px;
+}
+
+.horse-name {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.horse-sire {
+  margin: 0;
+  font-weight: normal;
+  color: #666;
+  font-size: 1rem;
+}
+
+.horse-info {
+  margin-bottom: 15px;
+}
+
+.info-line {
+  margin-bottom: 5px;
+}
+
+.info-label {
+  display: inline-block;
+  width: 70px;
+  color: #666;
+}
+
+.info-value {
+  color: #333;
+}
+
+.horse-description {
+  margin: 0;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* Horse CTA Column */
+.horse-cta-column {
+  flex: 0 0 180px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-left: 20px;
+}
+
+.learn-more-btn {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.learn-more-btn:hover {
+  background-color: #d81b60;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .buy-page {
+    padding-top: 60px; /* Adjust for smaller header */
+  }
+  
+  .horse-cta-column {
+    flex: 0 0 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .horse-listing {
+    flex-direction: column;
+  }
+  
+  .horse-image-column {
+    flex: 0 0 auto;
+    margin-right: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .horse-thumbnail {
+    width: auto;
+    max-width: 100%;
+    max-height: 150px;
+  }
+  
+  .horse-details-column {
+    margin-bottom: 20px;
+  }
+  
+  .horse-cta-column {
+    flex: 0 0 auto;
+    width: 100%;
+    justify-content: center;
+    padding-left: 0;
+  }
+  
+  .learn-more-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .buy-page {
+    padding-top: 55px; /* Adjust for even smaller header */
+  }
+  
+  .horse-name {
+    font-size: 1.2rem;
+  }
+  
+  .horse-sire {
+    font-size: 0.9rem;
+  }
+  
+  .info-line {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .info-label {
+    width: 100%;
+    margin-bottom: 2px;
+    font-weight: bold;
+  }
+  
+  .horse-description {
+    font-size: 0.9rem;
+  }
+}
+
+.bg-aliceblue {
+  background-color: aliceblue;
+}
+
+.f-style-systemui {
+  font-family: system-ui;
+}
+
+.fs-14 {
+  font-size: 14px;
 }
