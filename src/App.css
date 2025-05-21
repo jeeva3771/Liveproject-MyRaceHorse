@@ -171,19 +171,19 @@
 
 
 
-/*hero-horse*/
+/*overview-buy-horse*/
 /* Buy.css */
 .buy-page {
   font-family: 'Arial', sans-serif;
 }
 
-/* Hero Banner */
-.hero-banner {
+/* overview-buy Banner */
+.overview-buy-banner {
   width: 100%;
   margin-bottom: 30px;
 }
 
-.hero-image {
+.overview-buy-image {
   width: 100%;
   height: auto;
   display: block;
@@ -376,4 +376,12 @@
 
 .fs-14 {
   font-size: 14px;
+}
+
+.ff-math {  
+  font-family: 'math'
+}
+
+.p2-9 {
+  padding: 2% 9%
 }
