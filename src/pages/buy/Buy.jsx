@@ -1,27 +1,24 @@
-import React from "react";
-import Header from "../layout/TopNavBar";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
+import { useNavigate } from "react-router-dom"
+import Header from "../../layout/TopNavBar"
+
 
 const Buy = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Header />
       <div className="buy-page">
-        {/* overview-buy Banner */}
-        <div>
           <img
             src="https://cdnm.myracehorse.com/wp-content/uploads/2022/09/Group-1.png"
             alt="MyRaceHorse Banner"
-            className="img-fluid w-100 overview-buy-image"
+            className="img-fluid w-100 overview-image"
           />
-        </div>
 
         {/* Main Content */}
         <div className="container mt-4 mb-5">
           {/* Featured Horse */}
           <div className="card mb-4 ">
-            <div className="card-body p-3 p-md-4 bg-aliceblue ff-math" >
+            <div className="card-body p-3 p-md-4 bg-aliceblue" >
               <div className="row">
                 {/* Horse Image */}
                 <div className="col-md-3 mb-3 mb-md-0">
@@ -89,12 +86,15 @@ const Buy = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="col-md-3 d-flex align-items-center justify-content-cente">
+                <div className="col-md-3 d-flex align-items-center justify-content-center">
                   <div className="text-center p-3">
                     <h3 className="price-display mb-1">$77</h3>
                     <p className="text-muted mb-3">0.0075% share</p>
 
-                    <button className="btn btn-outline-primary mb-2 w-100">
+                    <button 
+                      className="btn btn-outline-primary mb-2 w-100"
+                      onClick={() => navigate('/offering/')}
+                    >
                       LEARN MORE
                     </button>
                     <button className="btn btn-primary mb-3 w-100">
@@ -178,12 +178,15 @@ const Buy = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className="col-md-3 d-flex align-items-center justify-content-cente">
+                <div className="col-md-3 d-flex align-items-center justify-content-center">
                   <div className="text-center p-3">
                     <h3 className="price-display mb-1">$79</h3>
                     <p className="text-muted mb-3">0.01% share</p>
 
-                    <button className="btn btn-outline-primary mb-2 w-100">
+                    <button 
+                      className="btn btn-outline-primary mb-2 w-100"
+                      onClick={() => navigate('/offering/')}
+                    >
                       LEARN MORE
                     </button>
                     <button className="btn btn-primary mb-3 w-100">
@@ -273,7 +276,10 @@ const Buy = () => {
                     <h3 className="price-display mb-1">$77</h3>
                     <p className="text-muted mb-3">0.01% share</p>
 
-                    <button className="btn btn-outline-primary mb-2 w-100">
+                    <button 
+                      className="btn btn-outline-primary mb-2 w-100"
+                      onClick={() => navigate('/offering/')}
+                    >
                       LEARN MORE
                     </button>
                     <button className="btn btn-primary mb-3 w-100">
@@ -342,6 +348,7 @@ const Buy = () => {
         </div>
       </div>
       <div className="bg-black mt-5 p2-9 text-white">
+        <div className="noticeLabel">
         <h3 className="mb-3">NOTICES</h3>
 
         <p className="mb-3">
@@ -385,7 +392,7 @@ const Buy = () => {
           Click To View The S-1a Filing.
         </p>
       </div>
-
+    </div>
     </>
   )
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap')
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') */
 
 .App {
   text-align: center;
@@ -178,12 +178,13 @@
 }
 
 /* overview-buy Banner */
-.overview-buy-banner {
+/* .overview-buy-banner {
   width: 100%;
   margin-bottom: 30px;
-}
+} */
 
-.overview-buy-image {
+/*overview-image*/
+.overview-image {
   width: 100%;
   height: auto;
   display: block;
@@ -378,10 +379,836 @@
   font-size: 14px;
 }
 
-.ff-math {  
-  font-family: 'math'
-}
-
 .p2-9 {
   padding: 2% 9%
 }
+
+
+/*offering*/ 
+
+.offering-page {
+  padding-top: 10px; /* Reduced from 70px */
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+/* The col-10 class gives us 10/12 = 83.33% width which is close to 80% */
+/* If you want exactly 80%, you can add this custom class */
+.col-10 {
+  flex: 0 0 80%;
+  max-width: 80%;
+}
+
+/* Large screens and up */
+@media (min-width: 1200px) {
+  .offering-page {
+    padding-top: 10px; /* Reduced from 70px */
+  }
+}
+
+/* Medium screens */
+@media (max-width: 991.98px) {
+  .offering-page {
+    padding-top: 8px; /* Reduced from 60px */
+  }
+}
+
+/* Small screens */
+@media (max-width: 767.98px) {
+  .offering-page {
+    padding-top: 6px; /* Reduced from 55px */
+  }
+  
+  .col-10 {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 575.98px) {
+  .offering-page {
+    padding-top: 6px; /* Reduced from 50px */
+  }
+  
+  .col-10 {
+    flex: 0 0 95%;
+    max-width: 95%;
+  }
+}
+
+
+
+
+
+
+
+
+/* Coming Soon Section */
+.coming-soon-section {
+  text-align: center;
+  margin: 40px 0 60px 0;  
+}
+
+/* Creative Coming Soon Button */
+.coming-soon-button {
+  position: relative;
+  background: linear-gradient(45deg, #e91e63, #ff4081, #e91e63);
+  background-size: 300% 300%;
+  color: white;
+  border: none;
+  padding: 25px 60px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 12px 35px rgba(233, 30, 99, 0.3);
+  animation: gradient-shift 3s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.coming-soon-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 18px 45px rgba(233, 30, 99, 0.4);
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: float-particles 4s infinite ease-in-out;
+}
+
+.particle-1 {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  top: 60%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+.particle-3 {
+  bottom: 30%;
+  left: 70%;
+  animation-delay: 3s;
+}
+
+@keyframes float-particles {
+  0%, 100% { 
+    opacity: 0;
+    transform: translateY(0px);
+  }
+  50% { 
+    opacity: 1;
+    transform: translateY(-12px);
+  }
+}
+
+.sec-description {
+  font-size: 18px;
+  color: #666;
+  margin-top: 25px;
+  max-width: 800px; /* Increased max-width to accommodate longer text */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  white-space: nowrap; /* Prevents line breaks */
+  overflow: hidden; /* Hides overflow if text is too long */
+  text-overflow: ellipsis; /* Shows ... if text is cut off */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767.98px) {
+  .sec-description {
+    white-space: normal; /* Allow wrapping on mobile */
+    max-width: 90%;
+  }
+}
+
+/* Content and Video Wrapper */
+.content-video-wrapper {
+  margin: 30px 100px;
+  padding: 20px 60px;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.content-column {
+  padding-right: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.video-column {
+  padding-left: 50px;
+  display: flex;
+  align-items: center;
+}
+
+/* Quote Content Styling */
+.quote-content {
+  position: relative;
+  padding: 40px 30px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  min-height: 350px;
+}
+
+.special-char {
+  font-size: 120px;
+  color: #e91e63;
+  opacity: 0.6;
+  font-family: 'Georgia', serif;
+  line-height: 1;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  margin: 0;
+  font-weight: 400;
+}
+
+.quote-text {
+  margin-left: 80px;
+  font-size: 24px;
+  line-height: 1.8;
+  color: #2c2c2c;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.quote-text p {
+  margin: 0;
+  display: inline;
+}
+
+.special-content {
+  color: #e91e63 !important;
+  font-weight: 600;
+  position: relative;
+  font-style: italic;
+}
+
+.special-content::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #e91e63, #ff4081);
+  border-radius: 2px;
+}
+
+/* Trainer name */
+.trainer-name {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  font-size: 16px;
+  color: #555;
+  font-style: italic;
+  text-align: right;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  padding-right: 45px;
+}
+
+.trainer-name::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 2px;
+  background: #e91e63;
+}
+
+/* Video Wrapper */
+.video-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: linear-gradient(45deg, #e91e63, #ff4081);
+  padding: 3px;
+}
+
+.video-wrapper:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.video-wrapper video {
+  border-radius: 17px;
+  width: 100%;
+  min-height: 350px;
+  background: #000;
+}
+
+/* Responsive Design */
+@media (min-width: 1200px) {
+  .content-video-wrapper {
+    margin: 30px 120px;
+    padding: 20px 70px;
+  }
+}
+
+@media (max-width: 1199.98px) and (min-width: 992px) {
+  .content-video-wrapper {
+    margin: 25px 80px;
+    padding: 18px 50px;
+  }
+  
+  .content-column { padding-right: 40px; }
+  .video-column { padding-left: 40px; }
+}
+
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .content-video-wrapper {
+    margin: 25px 60px;
+    padding: 15px 40px;
+  }
+  
+  .content-column, .video-column {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  
+  .quote-text {
+    font-size: 22px;
+    margin-left: 70px;
+  }
+  
+  .special-char { font-size: 100px; }
+  .quote-content { min-height: 320px; }
+}
+
+@media (max-width: 767.98px) and (min-width: 576px) {
+  .coming-soon-section {
+    padding: 35px 15px;
+    margin: 25px 0 40px 0;
+  }
+  
+  .coming-soon-button {
+    padding: 18px 40px;
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+  
+  .content-video-wrapper {
+    margin: 20px 40px;
+    padding: 15px 30px;
+  }
+  
+  .content-column {
+    margin-bottom: 40px;
+    padding-right: 20px;
+    align-items: flex-start;
+  }
+  
+  .video-column {
+    padding-left: 20px;
+    align-items: flex-start;
+  }
+  
+  .quote-content {
+    min-height: 280px;
+    padding: 25px 20px;
+  }
+  
+  .special-char { font-size: 75px; }
+  .quote-text {
+    font-size: 19px;
+    margin-left: 55px;
+  }
+  
+  .trainer-name {
+    bottom: 18px;
+    right: 18px;
+    font-size: 14px;
+    padding-right: 35px;
+  }
+  
+  .trainer-name::after { width: 28px; }
+  .video-wrapper video { min-height: 260px; }
+}
+
+@media (max-width: 575.98px) {
+  .coming-soon-section {
+    padding: 30px 10px;
+    margin: 20px 0 35px 0;
+  }
+  
+  .coming-soon-button {
+    padding: 15px 30px;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  
+  .content-video-wrapper {
+    margin: 15px 20px;
+    padding: 12px 18px;
+  }
+  
+  .content-column {
+    margin-bottom: 35px;
+    padding-right: 10px;
+    align-items: flex-start;
+  }
+  
+  .video-column {
+    padding-left: 10px;
+    align-items: flex-start;
+  }
+  
+  .quote-content {
+    min-height: 250px;
+    padding: 20px 15px;
+  }
+  
+  .special-char { font-size: 60px; }
+  .quote-text {
+    font-size: 16px;
+    margin-left: 45px;
+  }
+  
+  .trainer-name {
+    font-size: 13px;
+    bottom: 12px;
+    right: 12px;
+    padding-right: 30px;
+  }
+  
+  .trainer-name::after { width: 22px; }
+  .video-wrapper video { min-height: 220px; }
+}
+
+@media (max-width: 399.98px) {
+  .content-video-wrapper {
+    margin: 12px 15px;
+    padding: 10px 12px;
+  }
+  
+  .quote-content {
+    min-height: 220px;
+    padding: 15px 10px;
+  }
+  
+  .special-char { font-size: 50px; }
+  .quote-text {
+    font-size: 15px;
+    margin-left: 35px;
+  }
+  
+  .trainer-name {
+    font-size: 12px;
+    bottom: 10px;
+    right: 10px;
+    padding-right: 25px;
+  }
+  
+  .trainer-name::after { width: 18px; }
+  .video-wrapper video { min-height: 200px; }
+  .coming-soon-button {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .content-video-wrapper {
+    margin: 10px 30px;
+    padding: 10px 25px;
+  }
+  
+  .quote-content { min-height: 180px; }
+  .video-wrapper video { min-height: 150px; }
+}
+
+
+
+
+
+
+
+
+
+/* Gallery Section */
+.gallery-section {
+  margin: 60px 0;
+}
+
+.gallery-row {
+  position: relative;
+}
+
+/* All Gallery Cards - Same Style */
+.gallery-card {
+  height: 100%;
+  min-height: 300px;
+  position: relative;
+}
+
+.image-overlay-container {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-overlay-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.image-overlay-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-overlay-container:hover .gallery-img {
+  transform: scale(1.1);
+}
+
+.overlay-content {
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.overlay-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-text {
+  font-size: 1rem;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Different Gradient Overlays for Each Card */
+.champion-card .image-overlay {
+  background: linear-gradient(135deg, rgba(233, 30, 99, 0.8), rgba(255, 64, 129, 0.8));
+}
+
+.trainer-card .image-overlay {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(155, 89, 182, 0.8));
+}
+
+.circuit-card .image-overlay {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.8), rgba(26, 188, 156, 0.8));
+}
+
+/* Description Card */
+.description-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.description-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #e91e63, #ff4081);
+}
+
+.price-highlight {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(233, 30, 99, 0.3);
+}
+
+.price-amount {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.price-label {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+.description-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  font-family: 'Georgia', serif;
+}
+
+.highlight-text {
+  color: #e91e63;
+  font-weight: 600;
+  position: relative;
+}
+
+.highlight-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #e91e63, #ff4081);
+  border-radius: 1px;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .gallery-section {
+    margin: 40px 0;
+  }
+  
+  .gallery-card {
+    min-height: 250px;
+    margin-bottom: 30px;
+  }
+  
+  .overlay-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .gallery-section {
+    margin: 30px 0;
+  }
+  
+  .gallery-card {
+    min-height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .description-card .card-body {
+    padding: 20px;
+  }
+  
+  .price-highlight {
+    margin-bottom: 20px;
+  }
+  
+  .price-amount {
+    font-size: 1.5rem;
+  }
+  
+  .description-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .gallery-section {
+    margin: 20px 0;
+  }
+  
+  .gallery-card {
+    min-height: 180px;
+  }
+  
+  .overlay-title {
+    font-size: 1.1rem;
+  }
+  
+  .overlay-text {
+    font-size: 0.9rem;
+  }
+  
+  .price-amount {
+    font-size: 1.3rem;
+  }
+  
+  .description-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* SEC Description Fix */
+.sec-description {
+  font-size: 18px;
+  color: #666;
+  margin-top: 25px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 767.98px) {
+  .sec-description {
+    white-space: normal;
+    max-width: 90%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Expandable Content Styles */
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.expandable-content.expanded {
+  max-height: 2000px; /* Adjust based on content length */
+  opacity: 1;
+}
+
+.overview-toggle-btn {
+  background: transparent;
+  border: 2px solid #e91e63;
+  color: #e91e63;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overview-toggle-btn:hover {
+  background-color: #e91e63;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+}
+
+.toggle-icon {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.expected-track {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments for toggle button */
+@media (max-width: 767.98px) {
+  .overview-toggle-btn {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 14px;
+  }
+  
+  .expandable-content.expanded {
+    max-height: 3000px; /* More space needed on mobile */
+  }
+}
+
+@media (max-width: 575.98px) {
+  .overview-toggle-btn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+
+
+
+
+
