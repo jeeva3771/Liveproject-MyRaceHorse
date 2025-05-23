@@ -1,8 +1,95 @@
 import React, { useState } from "react";
 import Header from "../../layout/TopNavBar";
+import Horse from "../../document/horse.png";
+import HorseChart from "../../document/chart.png";
+import Colt from "../../document/clot horse.png";
+import Trainer from "../../document/trainer.png";
+import Midwest from "../../document/midwest.png";
+import trustPdf from "../../document/TrustButVerify_pdf.pdf";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Img1 from "../../document/trustbutverify1.jpg"
+import Img2 from "../../document/trustbutverify2.jpg"
+import Img3 from "../../document/trustbutverify3.jpg"
+
+import Img4 from "../../document/trustbutverify4.jpg"
+import Img5 from "../../document/trustbutverify5.jpg"
+import Img6 from "../../document/trustbutverify6.jpg"
+
+
+
 
 const Offering = () => {
   const [showFullOverview, setShowFullOverview] = useState(false);
+  const [activeDetailsTab, setActiveDetailsTab] = useState("workouts");
+
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const [imagesPerView, setImagesPerView] = useState(3);
+
+  // Add your media images array (replace with your actual images)
+  const mediaImages = [
+    Img1, // Your existing imported images
+    Img2,
+    Img3,
+    Img4,
+    Img5,
+    // Add more images as needed
+    Img6
+  ];
+
+  // Add this useEffect for responsive behavior
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 576) {
+        setImagesPerView(1);
+      } else if (window.innerWidth < 768) {
+        setImagesPerView(2);
+      } else {
+        setImagesPerView(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Updated carousel navigation functions
+  const goToPrevious = () => {
+    setCurrentMediaIndex((prevIndex) => {
+      // Move one image at a time instead of by imagesPerView
+      const newIndex = prevIndex - 1;
+      return newIndex < 0
+        ? Math.max(0, mediaImages.length - imagesPerView)
+        : newIndex;
+    });
+  };
+
+  const goToNext = () => {
+    setCurrentMediaIndex((prevIndex) => {
+      // Move one image at a time instead of by imagesPerView
+      const newIndex = prevIndex + 1;
+      // Stop when we can't show a full view anymore
+      const maxIndex = mediaImages.length - imagesPerView;
+      return newIndex > maxIndex ? 0 : newIndex;
+    });
+  };
+
+  // Updated page calculation to reflect single-image scrolling
+  const totalPages = Math.max(1, mediaImages.length - imagesPerView + 1);
+  const currentPage = currentMediaIndex + 1;
+
+  const goToPage = (pageIndex) => {
+    // pageIndex now represents the starting image index
+    setCurrentMediaIndex(pageIndex);
+  };
+
+  // The getVisibleImages function remains the same
+  const getVisibleImages = () => {
+    return mediaImages.slice(
+      currentMediaIndex,
+      currentMediaIndex + imagesPerView
+    );
+  };
 
   const toggleOverview = () => {
     setShowFullOverview(!showFullOverview);
@@ -92,7 +179,7 @@ const Offering = () => {
                       <div className="gallery-card champion-card">
                         <div className="image-overlay-container">
                           <img
-                            src="https://store-m2-cdn.myracehorse.com/catalog/product/t/r/trust_but_verify.png"
+                            src={Colt}
                             alt="Trust But Verify Colt"
                             className="img-fluid rounded gallery-img"
                           />
@@ -110,7 +197,7 @@ const Offering = () => {
                       <div className="gallery-card trainer-card">
                         <div className="image-overlay-container">
                           <img
-                            src="https://store-m2-cdn.myracehorse.com/catalog/product/t/r/trust_but_verify_trainer.png"
+                            src={Trainer}
                             alt="D Wayne Lukas Trainer"
                             className="img-fluid rounded gallery-img"
                           />
@@ -128,7 +215,7 @@ const Offering = () => {
                       <div className="gallery-card circuit-card">
                         <div className="image-overlay-container">
                           <img
-                            src="https://store-m2-cdn.myracehorse.com/catalog/product/2/9/29_1.png"
+                            src={Midwest}
                             alt="Midwest Racing Circuit"
                             className="img-fluid rounded gallery-img"
                           />
@@ -330,18 +417,18 @@ const Offering = () => {
                     <div className="col-md-6 mb-3 mb-md-0">
                       <div className="side-image-wrapper">
                         <img
-                          src="https://store-m2-cdn.myracehorse.com/catalog/product/i/n/into_mischief_x_modern_masterpiece.png"
+                          src={Horse}
                           alt="Racing Information"
                           className="img-fluid rounded side-image"
                         />
                       </div>
                     </div>
-                    
+
                     {/* Right Image */}
                     <div className="col-md-6">
                       <div className="side-image-wrapper">
                         <img
-                          src="https://store-m2-cdn.myracehorse.com/catalog/product/t/r/trust_but_verify_1.png"
+                          src={HorseChart}
                           alt="Additional Racing Information"
                           className="img-fluid rounded side-image"
                         />
@@ -350,10 +437,447 @@ const Offering = () => {
                   </div>
                 </div>
               </div>
+              <div class="horse-pedigree-link">
+                <a href={trustPdf} target="_blank">
+                  See full pedigree here
+                </a>
+                <hr />
+              </div>
+            </div>
+
+            <div className="details-media-container">
+              {/* DETAILS Section */}
+              <div className="details-section">
+                <h2 className="section-title">DETAILS</h2>
+
+                <div className="tab-buttons">
+                  <button
+                    className={`tab-button ${
+                      activeDetailsTab === "workouts" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveDetailsTab("workouts")}
+                  >
+                    WORKOUTS
+                  </button>
+                  <button
+                    className={`tab-button ${
+                      activeDetailsTab === "results" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveDetailsTab("results")}
+                  >
+                    RESULTS
+                  </button>
+                </div>
+
+                <div className="tab-content">
+                  <div className="no-data-message">No data available</div>
+                </div>
+              </div>
+
+              {/* MEDIA Section */}
+              <div className="col-12">
+                <div className="media-section">
+                  <h2 className="section-title">MEDIA</h2>
+
+                  <div className="media-carousel-wrapper">
+                    <div className="media-carousel-content">
+                      {/* Left Arrow */}
+                      <button
+                        className="media-nav-button left"
+                        onClick={goToPrevious}
+                        disabled={mediaImages.length <= imagesPerView}
+                        aria-label="Previous images"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+
+                      {/* Images Container */}
+                      <div
+                        className="media-grid"
+                        style={{ "--images-per-view": imagesPerView }}
+                      >
+                        {getVisibleImages().map((src, index) => (
+                          <div
+                            key={currentMediaIndex + index}
+                            className="media-item"
+                          >
+                            <img
+                              src={src}
+                              alt={`Trust But Verify ${
+                                currentMediaIndex + index + 1
+                              }`}
+                              loading="lazy"
+                            />
+                            <div className="media-overlay">
+                              <span className="media-number">
+                                {currentMediaIndex + index + 1}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Right Arrow */}
+                      <button
+                        className="media-nav-button right"
+                        onClick={goToNext}
+                        disabled={mediaImages.length <= imagesPerView}
+                        aria-label="Next images"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                    </div>
+
+                    {/* Indicators */}
+                    {/* Updated Indicators */}
+                    {mediaImages.length > imagesPerView && (
+                      <div className="media-indicators">
+                        <div className="media-page-info">
+                          {currentPage} / {totalPages}
+                        </div>
+
+                        <div className="media-page-dots">
+                          {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                              key={index}
+                              className={`media-page-dot ${
+                                currentPage === index + 1 ? "active" : ""
+                              }`}
+                              onClick={() => goToPage(index)}
+                              aria-label={`Go to image ${index + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+{/* Creative Financials Section */}
+  <div className="container-fluid py-5">
+    <div className="row justify-content-center">
+      <div className="col-12 col-xl-11">
+        
+        {/* Animated Header */}
+        <div className="text-center mb-5">
+          <div className="section-header-wrapper">
+            <h2 className="section-title">Financials</h2>
+          </div>
+        </div>
+
+        {/* Interactive Financial Stats Cards */}
+        <div className="row g-4 mb-5">
+          {/* Share Price Card */}
+          <div className="col-6 col-lg-3">
+            <div className="financial-card share-price-card">
+              <div className="card-inner">
+                <div className="card-icon">
+                  <div className="icon-circle">💰</div>
+                </div>
+                <div className="card-content">
+                  <p className="card-label">Share Price</p>
+                  <h3 className="card-value">$77</h3>
+                  <div className="card-animation-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Total Offering Card */}
+          <div className="col-6 col-lg-3">
+            <div className="financial-card total-offering-card">
+              <div className="card-inner">
+                <div className="card-icon">
+                  <div className="icon-circle">🎯</div>
+                </div>
+                <div className="card-content">
+                  <p className="card-label">Total Offering</p>
+                  <h3 className="card-value">$1.03M</h3>
+                  <div className="card-animation-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Horse Equity Card */}
+          <div className="col-6 col-lg-3">
+            <div className="financial-card equity-card">
+              <div className="card-inner">
+                <div className="card-icon">
+                  <div className="icon-circle">🏇</div>
+                </div>
+                <div className="card-content">
+                  <p className="card-label">Horse Equity</p>
+                  <h3 className="card-value">100%</h3>
+                  <div className="card-animation-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Per Share Equity Card */}
+          <div className="col-6 col-lg-3">
+            <div className="financial-card per-share-card">
+              <div className="card-inner">
+                <div className="card-icon">
+                  <div className="icon-circle">📊</div>
+                </div>
+                <div className="card-content">
+                  <p className="card-label">Per Share</p>
+                  <h3 className="card-value">0.0075%</h3>
+                  <div className="card-animation-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content Section */}
+        <div className="row g-5">
+          
+          {/* Interactive Chart Section */}
+          <div className="col-12 col-lg-6">
+            <div className="chart-container">
+              <div className="chart-visual">
+                <div className="pie-chart-container">
+                  {/* Animated Pie Chart Segments */}
+                  <div className="pie-segment asset-cost" data-percentage="65">
+                   
+                  </div>
+                  <div className="pie-segment management-fee" data-percentage="15">
+                    
+                  </div>
+                  <div className="pie-segment operating-reserve" data-percentage="12">
+                    
+                  </div>
+                  <div className="pie-segment other-fees" data-percentage="8">
+                    
+                  </div>
+                </div>
+                
+               
+              </div>
+            </div>
+          </div>
+          
+          {/* Creative Accordion Section */}
+          <div className="col-12 col-lg-6">
+            <div className="creative-accordion">
+              
+              {/* Asset Cost */}
+              <div className="accordion-card active">
+                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#assetCostDetail">
+                  <div className="trigger-icon">
+                    <div className="icon-wrapper asset-icon">🏆</div>
+                  </div>
+                  <div className="trigger-content">
+                    <h5 className="trigger-title">Asset Cost</h5>
+                    <p className="trigger-subtitle">Horse acquisition & fees</p>
+                  </div>
+                  <div className="trigger-arrow">
+                    <span className="arrow-icon">▼</span>
+                  </div>
+                </div>
+                <div id="assetCostDetail" className="accordion-content collapse show">
+                  <div className="content-inner">
+                    <div className="highlight-stat">
+                      <span className="stat-label">Purchase Price:</span>
+                      <span className="stat-value">$450,000</span>
+                    </div>
+                    <p>
+                      Includes the initial purchase price plus 5% bloodstock fee. 
+                      Series Trust But Verify owns 100% of the underlying asset, 
+                      consisting of 13,333 total shares.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Management Fee */}
+              <div className="accordion-card">
+                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#managementDetail">
+                  <div className="trigger-icon">
+                    <div className="icon-wrapper management-icon">⚡</div>
+                  </div>
+                  <div className="trigger-content">
+                    <h5 className="trigger-title">Management & Due Diligence</h5>
+                    <p className="trigger-subtitle">Professional oversight</p>
+                  </div>
+                  <div className="trigger-arrow">
+                    <span className="arrow-icon">▼</span>
+                  </div>
+                </div>
+                <div id="managementDetail" className="accordion-content collapse">
+                  <div className="content-inner">
+                    <p>
+                      Active management by working with trainers, vets, bloodstock agents, 
+                      and other stakeholders to maximize series performance. No additional 
+                      management fees unless performance bonuses are earned.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Operating Reserve */}
+              <div className="accordion-card">
+                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#operatingDetail">
+                  <div className="trigger-icon">
+                    <div className="icon-wrapper operating-icon">🔧</div>
+                  </div>
+                  <div className="trigger-content">
+                    <h5 className="trigger-title">Operating Expense Reserve</h5>
+                    <p className="trigger-subtitle">Ongoing care & training</p>
+                  </div>
+                  <div className="trigger-arrow">
+                    <span className="arrow-icon">▼</span>
+                  </div>
+                </div>
+                <div id="operatingDetail" className="accordion-content collapse">
+                  <div className="content-inner">
+                    <div className="expense-grid">
+                      <div className="expense-item">Training & Care</div>
+                      <div className="expense-item">Insurance</div>
+                      <div className="expense-item">Veterinary</div>
+                      <div className="expense-item">Transportation</div>
+                      <div className="expense-item">Race Entries</div>
+                      <div className="expense-item">Administration</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Brokerage & Other */}
+              <div className="accordion-card">
+                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#brokerageDetail">
+                  <div className="trigger-icon">
+                    <div className="icon-wrapper brokerage-icon">🏛️</div>
+                  </div>
+                  <div className="trigger-content">
+                    <h5 className="trigger-title">Brokerage & Organizational</h5>
+                    <p className="trigger-subtitle">Legal & compliance</p>
+                  </div>
+                  <div className="trigger-arrow">
+                    <span className="arrow-icon">▼</span>
+                  </div>
+                </div>
+                <div id="brokerageDetail" className="accordion-content collapse">
+                  <div className="content-inner">
+                    <div className="certification-badge">
+                      <span className="badge-text">SEC Qualified</span>
+                    </div>
+                    <p>
+                      Offered through registered broker-dealer Dalmore Group, LLC 
+                      (FINRA/SIPC member). Includes legal, compliance, marketing, 
+                      and experiential program management.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom CTA Section */}
+        <div className="row mt-5">
+          <div className="col-12">
+            {/* <div className="cta-section">
+              <div className="cta-content">
+                <h4 className="cta-title">Ready to Own a Piece of Racing History?</h4>
+                <p className="cta-subtitle">Join thousands of micro-owners in the sport of kings</p>
+                <div className="cta-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">13,333</span>
+                    <span className="stat-label">Total Shares</span>
+                  </div>
+                  <div className="stat-divider">|</div>
+                  <div className="stat-item">
+                    <span className="stat-number">$77</span>
+                    <span className="stat-label">Per Share</span>
+                  </div>
+                  <div className="stat-divider">|</div>
+                  <div className="stat-item">
+                    <span className="stat-number">0.0075%</span>
+                    <span className="stat-label">Equity</span>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+
+            <div className="coming-soon-section">
+                <button className="coming-soon-button">
+                  <span className="button-glow"></span>
+                  <span className="button-text">COMING SOON</span>
+                  <div className="button-particles">
+                    <span className="particle particle-1"></span>
+                    <span className="particle particle-2"></span>
+                    <span className="particle particle-3"></span>
+                  </div>
+                </button>
+                <p className="sec-description">
+                  We have received SEC qualification for this offering and it
+                  will be available soon.
+                </p>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+                
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="bg-black mt-5 p2-9 text-white">
+        <div className="noticeLabel">
+        <h3 className="mb-3">NOTICES</h3>
+
+        <p className="mb-3">
+          These Offering Materials May Contain Forward-Looking Statements And Information Relating To, 
+          Among Other Things, The Company, Its Business Plan And Strategy, And Its Industry. 
+          These Forwardlooking Statements Are Based On The Beliefs Of, Assumptions Made By, 
+          And Information Currently Available To The Company’s Management. When Used In The Offering Materials, 
+          The Words “Estimate,” “Project,” “Believe,” “Anticipate,” “Intend,” “Expect” And Similar Expressions 
+          Are Intended To Identify Forward-Looking Statements. These Statements Reflect Management’s Current Views 
+          With Respect To Future Events And Are Subject To Risks And Uncertainties That Could Cause The Company’s 
+          Actual Results To Differ Materially From Those Contained In The Forward-Looking Statements. Investors Are 
+          Cautioned Not To Place Undue Reliance On These Forward-Looking Statements, Which Speak Only As Of The Date 
+          On Which They Are Made. The Company Does Not Undertake Any Obligation To Revise Or Update These Forward-Looking 
+          Statements To Reflect Events Or Circumstances After Such Date Or To Reflect The Occurrence Of Unanticipated 
+          Events.
+        </p>
+
+        <p className="mb-3">
+          Please Note Investors In This Offering Will Be Clients Of The Issuer And Not Dalmore Group, Llc (“Dalmore”), 
+          A Registered Broker-Dealer And Member Finra/Sipc. Dalmore’s Role In The Transaction Is To Facilitate Back Office 
+          And Regulatory Functions Related To The Regulation A Transaction, And Acts Only As The Broker/Dealer Of Record 
+          For The Offering Listed.
+        </p>
+
+        <p className="mb-3">
+          Dalmore Is Not Providing Investment Advice Or Recommendations, Or Legal Or Tax Advice. This Reg A Investment Is
+          Speculative, Illiquid, And Involves A High Degree Of Risk, Including The Possible Loss Of Your Entire Investment.
+          All Investors Should Make Their Own Determination, With The Assistance Of Their Own Financial Or Other Advisors, 
+          As To Whether Or Not To Make Any Investment, Based On Their Own Independent Evaluation, Analysis And Circumstances.
+        </p>
+
+        <p className="mb-3">
+          An Offering Statement Regarding This Offering Has Been Filed With The Sec. The Sec Has Qualified That Offering 
+          Statement, Which Only Means That The Company May Make Sales Of The Securities Described By The Offering 
+          Statement. It Does Not Mean That The Sec Has Approved, Passed Upon The Merits Or Passed Upon The Accuracy Or 
+          Completeness Of The Information In The Offering Statement.
+        </p>
+
+        <p>
+          The Offering Circular That Is Part Of That Offering Statement Is At Nary Offering. 
+          Click To View The S-1a Filing.
+        </p>
+      </div>
+    </div>
     </>
   );
 };

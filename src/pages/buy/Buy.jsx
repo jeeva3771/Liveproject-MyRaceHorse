@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import Header from "../../layout/TopNavBar"
+import Dream from "../../document/dream.png"
+import TrustButVerify from "../../document/trustbutverify.png"
+import JustLikelucy from "../../document/justlikelucy.png"
+import Eyepopnruby from "../../document/eyepopnruby.png"
 
 
 const Buy = () => {
@@ -9,7 +13,7 @@ const Buy = () => {
       <Header />
       <div className="buy-page">
           <img
-            src="https://cdnm.myracehorse.com/wp-content/uploads/2022/09/Group-1.png"
+            src={Dream}
             alt="MyRaceHorse Banner"
             className="img-fluid w-100 overview-image"
           />
@@ -24,7 +28,7 @@ const Buy = () => {
                 <div className="col-md-3 mb-3 mb-md-0">
                   <div>
                     <img
-                      src="https://store-m2-cdn.myracehorse.com/catalog/product/t/r/trustbutverify_listing_desktop_1.png"
+                      src={TrustButVerify}
                       alt="Trust But Verify"
                       className="img-fluid rounded"
                     />
@@ -117,7 +121,7 @@ const Buy = () => {
                 <div className="col-md-3 mb-3 mb-md-0">
                   <div>
                     <img
-                      src="https://store-m2-cdn.myracehorse.com/catalog/product/e/y/eyepopnruby_listing_desktop_1.png" alt="Trust But Verify"
+                      src={Eyepopnruby} alt="Eyepopnruby"
                       className="img-fluid rounded"
                     />
                   </div>
@@ -209,8 +213,8 @@ const Buy = () => {
                 <div className="col-md-3 mb-3 mb-md-0">
                   <div>
                     <img
-                      src="https://store-m2-cdn.myracehorse.com/catalog/product/j/u/justlikelucy_listing_desktop_1.png"
-                      alt="Trust But Verify"
+                      src={JustLikelucy}
+                      alt="Just Likelucy"
                       className="img-fluid rounded"
                     />
                   </div>
