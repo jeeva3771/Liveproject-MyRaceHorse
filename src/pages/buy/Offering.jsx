@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../layout/TopNavBar";
 import Horse from "../../document/horse.png";
 import HorseChart from "../../document/chart.png";
@@ -7,16 +7,50 @@ import Trainer from "../../document/trainer.png";
 import Midwest from "../../document/midwest.png";
 import trustPdf from "../../document/TrustButVerify_pdf.pdf";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Img1 from "../../document/trustbutverify1.jpg"
-import Img2 from "../../document/trustbutverify2.jpg"
-import Img3 from "../../document/trustbutverify3.jpg"
+import Img1 from "../../document/trustbutverify1.jpg";
+import Img2 from "../../document/trustbutverify2.jpg";
+import Img3 from "../../document/trustbutverify3.jpg";
 
-import Img4 from "../../document/trustbutverify4.jpg"
-import Img5 from "../../document/trustbutverify5.jpg"
-import Img6 from "../../document/trustbutverify6.jpg"
+import Img4 from "../../document/trustbutverify4.jpg";
+import Img5 from "../../document/trustbutverify5.jpg";
+import Img6 from "../../document/trustbutverify6.jpg";
+import Footer from "../../layout/Footer";
+import { X } from 'lucide-react';
 
 
+const ComingSoonModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
 
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>
+          <X size={20} />
+        </button>
+        
+        <div className="modal-body">
+        
+          
+          <div className="modal-message mt-5">
+            We have received SEC qualification for this offering and it will be available soon.
+          </div>
+          
+          <div className="modal-actions">
+            <button className="auth-button sign-in" onClick={onClose}>
+              SIGN IN
+            </button>
+            <button className="auth-button sign-up" onClick={onClose}>
+              SIGN UP
+            </button>
+            <button className="cancel-button" onClick={onClose}>
+              CANCEL
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Offering = () => {
   const [showFullOverview, setShowFullOverview] = useState(false);
@@ -24,6 +58,16 @@ const Offering = () => {
 
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [imagesPerView, setImagesPerView] = useState(3);
+  const [isComingSoonModalOpen, setIsComingSoonModalOpen] = useState(false);
+
+  const handleComingSoonClick = () => {
+    setIsComingSoonModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsComingSoonModalOpen(false);
+  };
+  
 
   // Add your media images array (replace with your actual images)
   const mediaImages = [
@@ -33,7 +77,7 @@ const Offering = () => {
     Img4,
     Img5,
     // Add more images as needed
-    Img6
+    Img6,
   ];
 
   // Add this useEffect for responsive behavior
@@ -95,6 +139,107 @@ const Offering = () => {
     setShowFullOverview(!showFullOverview);
   };
 
+  const [activeAccordion, setActiveAccordion] = useState('');
+
+  const toggleAccordion = (accordionKey) => {
+    setActiveAccordion(activeAccordion === accordionKey ? '' : accordionKey);
+  };
+  const accordionData = [
+    {
+      key: 'asset',
+      icon: '🏆',
+      iconClass: 'asset-icon',
+      title: 'Asset Cost',
+      subtitle: 'Horse acquisition & fees',
+      content: (
+        <div className="content-inner">
+          <p>
+            Includes the initial purchase price plus 5% bloodstock fee. Series Trust But Verify owns
+            100% of the underlying asset, consisting of 13,333 total shares.
+          </p>
+        </div>
+      )
+    },
+    {
+      key: 'brokerage',
+      icon: '🏛️',
+      iconClass: 'brokerage-icon',
+      title: 'Brokerage & Organizational',
+      subtitle: 'Legal & compliance',
+      content: (
+        <div className="content-inner">
+          <p>
+            Offered through registered broker-dealer Dalmore Group, LLC (FINRA/SIPC member).
+            Includes legal, compliance, marketing, and experiential program management.
+          </p>
+        </div>
+      )
+    },
+    {
+      key: 'management',
+      icon: '⚡',
+      iconClass: 'management-icon',
+      title: 'Management & Due Diligence',
+      subtitle: 'Professional oversight',
+      content: (
+        <div className="content-inner">
+          <p>
+            Active management by working with trainers, vets, bloodstock agents, and other
+            stakeholders to maximize series performance. No additional management fees unless
+            performance bonuses are earned.
+          </p>
+        </div>
+      )
+    },
+    {
+      key: 'organizational',
+      icon: '📋',
+      iconClass: 'organizational-icon',
+      title: 'Organizational and Experiential Fee',
+      subtitle: 'Legal & compliance',
+      content: (
+        <div className="content-inner">
+          <p>
+            Active management by working with trainers, vets, bloodstock agents, and other
+            stakeholders to maximize series performance. No additional management fees unless
+            performance bonuses are earned.
+          </p>
+        </div>
+      )
+    },
+    {
+      key: 'operating',
+      icon: '🔧',
+      iconClass: 'operating-icon',
+      title: 'Operating Expense Reserve',
+      subtitle: 'Ongoing care & training',
+      content: (
+        <div className="content-inner">
+          <p>
+            Active management by working with trainers, vets, bloodstock agents, and other
+            stakeholders to maximize series performance. No additional management fees unless
+            performance bonuses are earned.
+          </p>
+        </div>
+      )
+    },
+   
+  ];
+
+  const financialCards = [
+    { label: 'Share Price', value: '$77', icon: '💰' },
+    { label: 'Total Offering', value: '$1.03M', icon: '🎯' },
+    { label: 'Horse Equity', value: '100%', icon: '🏇' },
+    { label: 'Per Share', value: '0.0075%', icon: '📊' }
+  ];
+
+  const legendItems = [
+    { color: 'asset', text: 'Asset (65%)' },
+    { color: 'brokerage', text: 'Brokerage (15%)' },
+    { color: 'management', text: 'Management (10%)' },
+    { color: 'operating', text: 'Operating (7%)' },
+    { color: 'organizational', text: 'Organizational (3%)' }
+  ];
   return (
     <>
       <Header />
@@ -107,12 +252,12 @@ const Offering = () => {
                 alt="Trained Horse"
                 className="img-fluid w-100 rounded"
               />
-            </div>
+            </div>  
 
             <div className="col-12">
               {/* Coming Soon Section */}
               <div className="coming-soon-section">
-                <button className="coming-soon-button">
+                <button className="coming-soon-button" onClick={handleComingSoonClick}>
                   <span className="button-glow"></span>
                   <span className="button-text">COMING SOON</span>
                   <div className="button-particles">
@@ -553,259 +698,102 @@ const Offering = () => {
                   </div>
                 </div>
 
-{/* Creative Financials Section */}
-  <div className="container-fluid py-5">
-    <div className="row justify-content-center">
-      <div className="col-12 col-xl-11">
-        
-        {/* Animated Header */}
-        <div className="text-center mb-5">
-          <div className="section-header-wrapper">
-            <h2 className="section-title">Financials</h2>
-          </div>
-        </div>
+                <div className="container-fluid">
+                  <div className="row justify-content-center">
+                    <div className="col-12 col-xl-11">
+                      {/* Animated Header */}
+                      <div className="text-center mb-5 mt-5">
+                        <div className="section-header-wrapper">
+                          <h2 className="section-title">Financials</h2>
+                        </div>
+                      </div>
 
-        {/* Interactive Financial Stats Cards */}
-        <div className="row g-4 mb-5">
-          {/* Share Price Card */}
-          <div className="col-6 col-lg-3">
-            <div className="financial-card share-price-card">
-              <div className="card-inner">
-                <div className="card-icon">
-                  <div className="icon-circle">💰</div>
-                </div>
-                <div className="card-content">
-                  <p className="card-label">Share Price</p>
-                  <h3 className="card-value">$77</h3>
-                  <div className="card-animation-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Total Offering Card */}
-          <div className="col-6 col-lg-3">
-            <div className="financial-card total-offering-card">
-              <div className="card-inner">
-                <div className="card-icon">
-                  <div className="icon-circle">🎯</div>
-                </div>
-                <div className="card-content">
-                  <p className="card-label">Total Offering</p>
-                  <h3 className="card-value">$1.03M</h3>
-                  <div className="card-animation-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Horse Equity Card */}
-          <div className="col-6 col-lg-3">
-            <div className="financial-card equity-card">
-              <div className="card-inner">
-                <div className="card-icon">
-                  <div className="icon-circle">🏇</div>
-                </div>
-                <div className="card-content">
-                  <p className="card-label">Horse Equity</p>
-                  <h3 className="card-value">100%</h3>
-                  <div className="card-animation-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Per Share Equity Card */}
-          <div className="col-6 col-lg-3">
-            <div className="financial-card per-share-card">
-              <div className="card-inner">
-                <div className="card-icon">
-                  <div className="icon-circle">📊</div>
-                </div>
-                <div className="card-content">
-                  <p className="card-label">Per Share</p>
-                  <h3 className="card-value">0.0075%</h3>
-                  <div className="card-animation-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                      {/* Interactive Financial Stats Cards */}
+                      <div className="financial-cards-grid">
+                        {financialCards.map((card, index) => (
+                          <div key={index} className="financial-card">
+                            <div className="card-inner">
+                              <div className="card-icon">
+                                <div className="icon-circle">{card.icon}</div>
+                              </div>
+                              <div className="card-content">
+                                <p className="card-label">{card.label}</p>
+                                <h3 className="card-value">{card.value}</h3>
+                                <div className="card-animation-bar"></div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
 
-        {/* Main Content Section */}
-        <div className="row g-5">
-          
-          {/* Interactive Chart Section */}
-          <div className="col-12 col-lg-6">
-            <div className="chart-container">
-              <div className="chart-visual">
-                <div className="pie-chart-container">
-                  {/* Animated Pie Chart Segments */}
-                  <div className="pie-segment asset-cost" data-percentage="65">
-                   
-                  </div>
-                  <div className="pie-segment management-fee" data-percentage="15">
-                    
-                  </div>
-                  <div className="pie-segment operating-reserve" data-percentage="12">
-                    
-                  </div>
-                  <div className="pie-segment other-fees" data-percentage="8">
-                    
-                  </div>
-                </div>
-                
-               
-              </div>
-            </div>
-          </div>
-          
-          {/* Creative Accordion Section */}
-          <div className="col-12 col-lg-6">
-            <div className="creative-accordion">
-              
-              {/* Asset Cost */}
-              <div className="accordion-card active">
-                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#assetCostDetail">
-                  <div className="trigger-icon">
-                    <div className="icon-wrapper asset-icon">🏆</div>
-                  </div>
-                  <div className="trigger-content">
-                    <h5 className="trigger-title">Asset Cost</h5>
-                    <p className="trigger-subtitle">Horse acquisition & fees</p>
-                  </div>
-                  <div className="trigger-arrow">
-                    <span className="arrow-icon">▼</span>
-                  </div>
-                </div>
-                <div id="assetCostDetail" className="accordion-content collapse show">
-                  <div className="content-inner">
-                    <div className="highlight-stat">
-                      <span className="stat-label">Purchase Price:</span>
-                      <span className="stat-value">$450,000</span>
-                    </div>
-                    <p>
-                      Includes the initial purchase price plus 5% bloodstock fee. 
-                      Series Trust But Verify owns 100% of the underlying asset, 
-                      consisting of 13,333 total shares.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                      {/* Main Content Section */}
+                      <div className="main-content">
+                        {/* Interactive Chart Section */}
+                        <div className="chart-container">
+                          <div className="chart-visual">
+                            <div className="pie-chart-container"></div>
+                          </div>
 
-              {/* Management Fee */}
-              <div className="accordion-card">
-                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#managementDetail">
-                  <div className="trigger-icon">
-                    <div className="icon-wrapper management-icon">⚡</div>
-                  </div>
-                  <div className="trigger-content">
-                    <h5 className="trigger-title">Management & Due Diligence</h5>
-                    <p className="trigger-subtitle">Professional oversight</p>
-                  </div>
-                  <div className="trigger-arrow">
-                    <span className="arrow-icon">▼</span>
-                  </div>
-                </div>
-                <div id="managementDetail" className="accordion-content collapse">
-                  <div className="content-inner">
-                    <p>
-                      Active management by working with trainers, vets, bloodstock agents, 
-                      and other stakeholders to maximize series performance. No additional 
-                      management fees unless performance bonuses are earned.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                          {/* Chart Legend */}
+                          <div className="chart-legend">
+                            {legendItems.map((item, index) => (
+                              <div key={index} className="legend-item">
+                                <div
+                                  className={`legend-color ${item.color}`}
+                                ></div>
+                                <span className="legend-text">{item.text}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
 
-              {/* Operating Reserve */}
-              <div className="accordion-card">
-                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#operatingDetail">
-                  <div className="trigger-icon">
-                    <div className="icon-wrapper operating-icon">🔧</div>
-                  </div>
-                  <div className="trigger-content">
-                    <h5 className="trigger-title">Operating Expense Reserve</h5>
-                    <p className="trigger-subtitle">Ongoing care & training</p>
-                  </div>
-                  <div className="trigger-arrow">
-                    <span className="arrow-icon">▼</span>
-                  </div>
-                </div>
-                <div id="operatingDetail" className="accordion-content collapse">
-                  <div className="content-inner">
-                    <div className="expense-grid">
-                      <div className="expense-item">Training & Care</div>
-                      <div className="expense-item">Insurance</div>
-                      <div className="expense-item">Veterinary</div>
-                      <div className="expense-item">Transportation</div>
-                      <div className="expense-item">Race Entries</div>
-                      <div className="expense-item">Administration</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                        {/* Creative Accordion Section */}
+                        <div className="creative-accordion">
+                          {accordionData.map((item) => (
+                            <div
+                              key={item.key}
+                              className={`accordion-card ${
+                                activeAccordion === item.key ? "active" : ""
+                              }`}
+                            >
+                              <button
+                                className="accordion-trigger"
+                                onClick={() => toggleAccordion(item.key)}
+                              >
+                                <div className="trigger-icon">
+                                  <div
+                                    className={`icon-wrapper ${item.iconClass}`}
+                                  >
+                                    {item.icon}
+                                  </div>
+                                </div>
+                                <div className="trigger-content">
+                                  <h5 className="trigger-title">
+                                    {item.title}
+                                  </h5>
+                                  <p className="trigger-subtitle">
+                                    {item.subtitle}
+                                  </p>
+                                </div>
+                                <div className="trigger-arrow">
+                                  <span className="arrow-icon">▼</span>
+                                </div>
+                              </button>
+                              <div
+                                className={`accordion-content ${
+                                  activeAccordion === item.key ? "show" : ""
+                                }`}
+                              >
+                                {item.content}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
 
-              {/* Brokerage & Other */}
-              <div className="accordion-card">
-                <div className="accordion-trigger" data-bs-toggle="collapse" data-bs-target="#brokerageDetail">
-                  <div className="trigger-icon">
-                    <div className="icon-wrapper brokerage-icon">🏛️</div>
-                  </div>
-                  <div className="trigger-content">
-                    <h5 className="trigger-title">Brokerage & Organizational</h5>
-                    <p className="trigger-subtitle">Legal & compliance</p>
-                  </div>
-                  <div className="trigger-arrow">
-                    <span className="arrow-icon">▼</span>
-                  </div>
-                </div>
-                <div id="brokerageDetail" className="accordion-content collapse">
-                  <div className="content-inner">
-                    <div className="certification-badge">
-                      <span className="badge-text">SEC Qualified</span>
-                    </div>
-                    <p>
-                      Offered through registered broker-dealer Dalmore Group, LLC 
-                      (FINRA/SIPC member). Includes legal, compliance, marketing, 
-                      and experiential program management.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom CTA Section */}
-        <div className="row mt-5">
-          <div className="col-12">
-            {/* <div className="cta-section">
-              <div className="cta-content">
-                <h4 className="cta-title">Ready to Own a Piece of Racing History?</h4>
-                <p className="cta-subtitle">Join thousands of micro-owners in the sport of kings</p>
-                <div className="cta-stats">
-                  <div className="stat-item">
-                    <span className="stat-number">13,333</span>
-                    <span className="stat-label">Total Shares</span>
-                  </div>
-                  <div className="stat-divider">|</div>
-                  <div className="stat-item">
-                    <span className="stat-number">$77</span>
-                    <span className="stat-label">Per Share</span>
-                  </div>
-                  <div className="stat-divider">|</div>
-                  <div className="stat-item">
-                    <span className="stat-number">0.0075%</span>
-                    <span className="stat-label">Equity</span>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
-            <div className="coming-soon-section">
-                <button className="coming-soon-button">
+                      {/* Bottom CTA Section */}
+                      <div className="coming-soon-section">
+                <button className="coming-soon-button" onClick={handleComingSoonClick}>
                   <span className="button-glow"></span>
                   <span className="button-text">COMING SOON</span>
                   <div className="button-particles">
@@ -819,65 +807,77 @@ const Offering = () => {
                   will be available soon.
                 </p>
               </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-                
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-black mt-5 p2-9 text-white">
+      <div className="bg-black p2-9 text-white">
         <div className="noticeLabel">
-        <h3 className="mb-3">NOTICES</h3>
+          <h3 className="mb-3">NOTICES</h3>
 
-        <p className="mb-3">
-          These Offering Materials May Contain Forward-Looking Statements And Information Relating To, 
-          Among Other Things, The Company, Its Business Plan And Strategy, And Its Industry. 
-          These Forwardlooking Statements Are Based On The Beliefs Of, Assumptions Made By, 
-          And Information Currently Available To The Company’s Management. When Used In The Offering Materials, 
-          The Words “Estimate,” “Project,” “Believe,” “Anticipate,” “Intend,” “Expect” And Similar Expressions 
-          Are Intended To Identify Forward-Looking Statements. These Statements Reflect Management’s Current Views 
-          With Respect To Future Events And Are Subject To Risks And Uncertainties That Could Cause The Company’s 
-          Actual Results To Differ Materially From Those Contained In The Forward-Looking Statements. Investors Are 
-          Cautioned Not To Place Undue Reliance On These Forward-Looking Statements, Which Speak Only As Of The Date 
-          On Which They Are Made. The Company Does Not Undertake Any Obligation To Revise Or Update These Forward-Looking 
-          Statements To Reflect Events Or Circumstances After Such Date Or To Reflect The Occurrence Of Unanticipated 
-          Events.
-        </p>
+          <p className="mb-3 f-style-systemui">
+            These Offering Materials May Contain Forward-Looking Statements And
+            Information Relating To, Among Other Things, The Company, Its
+            Business Plan And Strategy, And Its Industry. These Forwardlooking
+            Statements Are Based On The Beliefs Of, Assumptions Made By, And
+            Information Currently Available To The Company’s Management. When
+            Used In The Offering Materials, The Words “Estimate,” “Project,”
+            “Believe,” “Anticipate,” “Intend,” “Expect” And Similar Expressions
+            Are Intended To Identify Forward-Looking Statements. These
+            Statements Reflect Management’s Current Views With Respect To Future
+            Events And Are Subject To Risks And Uncertainties That Could Cause
+            The Company’s Actual Results To Differ Materially From Those
+            Contained In The Forward-Looking Statements. Investors Are Cautioned
+            Not To Place Undue Reliance On These Forward-Looking Statements,
+            Which Speak Only As Of The Date On Which They Are Made. The Company
+            Does Not Undertake Any Obligation To Revise Or Update These
+            Forward-Looking Statements To Reflect Events Or Circumstances After
+            Such Date Or To Reflect The Occurrence Of Unanticipated Events.
+          </p>
 
-        <p className="mb-3">
-          Please Note Investors In This Offering Will Be Clients Of The Issuer And Not Dalmore Group, Llc (“Dalmore”), 
-          A Registered Broker-Dealer And Member Finra/Sipc. Dalmore’s Role In The Transaction Is To Facilitate Back Office 
-          And Regulatory Functions Related To The Regulation A Transaction, And Acts Only As The Broker/Dealer Of Record 
-          For The Offering Listed.
-        </p>
+          <p className="mb-3 f-style-systemui">
+            Please Note Investors In This Offering Will Be Clients Of The Issuer
+            And Not Dalmore Group, Llc (“Dalmore”), A Registered Broker-Dealer
+            And Member Finra/Sipc. Dalmore’s Role In The Transaction Is To
+            Facilitate Back Office And Regulatory Functions Related To The
+            Regulation A Transaction, And Acts Only As The Broker/Dealer Of
+            Record For The Offering Listed.
+          </p>
 
-        <p className="mb-3">
-          Dalmore Is Not Providing Investment Advice Or Recommendations, Or Legal Or Tax Advice. This Reg A Investment Is
-          Speculative, Illiquid, And Involves A High Degree Of Risk, Including The Possible Loss Of Your Entire Investment.
-          All Investors Should Make Their Own Determination, With The Assistance Of Their Own Financial Or Other Advisors, 
-          As To Whether Or Not To Make Any Investment, Based On Their Own Independent Evaluation, Analysis And Circumstances.
-        </p>
+          <p className="mb-3 f-style-systemui">
+            Dalmore Is Not Providing Investment Advice Or Recommendations, Or
+            Legal Or Tax Advice. This Reg A Investment Is Speculative, Illiquid,
+            And Involves A High Degree Of Risk, Including The Possible Loss Of
+            Your Entire Investment. All Investors Should Make Their Own
+            Determination, With The Assistance Of Their Own Financial Or Other
+            Advisors, As To Whether Or Not To Make Any Investment, Based On
+            Their Own Independent Evaluation, Analysis And Circumstances.
+          </p>
 
-        <p className="mb-3">
-          An Offering Statement Regarding This Offering Has Been Filed With The Sec. The Sec Has Qualified That Offering 
-          Statement, Which Only Means That The Company May Make Sales Of The Securities Described By The Offering 
-          Statement. It Does Not Mean That The Sec Has Approved, Passed Upon The Merits Or Passed Upon The Accuracy Or 
-          Completeness Of The Information In The Offering Statement.
-        </p>
+          <p className="mb-3 f-style-systemui">
+            An Offering Statement Regarding This Offering Has Been Filed With
+            The Sec. The Sec Has Qualified That Offering Statement, Which Only
+            Means That The Company May Make Sales Of The Securities Described By
+            The Offering Statement. It Does Not Mean That The Sec Has Approved,
+            Passed Upon The Merits Or Passed Upon The Accuracy Or Completeness
+            Of The Information In The Offering Statement.
+          </p>
 
-        <p>
-          The Offering Circular That Is Part Of That Offering Statement Is At Nary Offering. 
-          Click To View The S-1a Filing.
-        </p>
+          <p className="f-style-systemui">
+            The Offering Circular That Is Part Of That Offering Statement Is At
+            Nary Offering. Click To View The S-1a Filing.
+          </p>
+        </div>
       </div>
-    </div>
+      <ComingSoonModal 
+        isOpen={isComingSoonModalOpen}
+        onClose={handleCloseModal}
+      />
+      <Footer />
     </>
   );
 };

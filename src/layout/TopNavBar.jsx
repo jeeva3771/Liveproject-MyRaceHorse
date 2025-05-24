@@ -90,7 +90,7 @@ const Header = () => {
           {/* Left side menu items */}
           <ul className="navbar-nav left-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/buy">Buy</Link>
+              <Link className="nav-link active" to="/buy">Buy</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/stable">Stable</Link>
