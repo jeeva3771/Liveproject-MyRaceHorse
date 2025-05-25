@@ -7,7 +7,7 @@ body, html {
   margin: 0;
   padding: 0;
 }
-.App-logo {
+.App-logo {   
   height: 40vmin;
   pointer-events: none;
 }
@@ -391,8 +391,8 @@ body, html {
 
 .offering-page {
   padding-top: 10px; /* Reduced from 70px */
-  margin-top: 10px;
-  margin-bottom: 30px;
+  /* margin-top: 10px;
+  margin-bottom: 30px; */
 }
 
 /* The col-10 class gives us 10/12 = 83.33% width which is close to 80% */
@@ -1823,7 +1823,7 @@ body, html {
 }
 
 .media-page-info {
-  background: linear-gradient(45deg, #e91e63, #9c27b0);
+  background: linear-gradient(45deg, #e91e63);
   color: white;
   padding: 8px 16px;
   border-radius: 18px;
@@ -2094,7 +2094,7 @@ body, html {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  background: linear-gradient(45deg, #e91e63);
   color: white;
   animation: float 3s ease-in-out infinite;
 }
@@ -2251,7 +2251,7 @@ body, html {
   transform: scale(1.1);
 }
 
-.asset-icon { background: linear-gradient(135deg, #e91e63, #f06292); }
+.asset-icon { background: linear-gradient(35deg, #e91e63); }
 .management-icon { background: linear-gradient(135deg, #9c27b0, #ba68c8); }
 .operating-icon { background: linear-gradient(135deg, #00bcd4, #4dd0e1); }
 .brokerage-icon { background: linear-gradient(135deg, #4caf50, #81c784); }
@@ -2592,7 +2592,7 @@ body, html {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  background: linear-gradient(45deg, #e91e63);
   color: white;
   animation: float 3s ease-in-out infinite;
 }
@@ -2803,7 +2803,7 @@ body, html {
   transform: scale(1.1);
 }
 
-.asset-icon { background: linear-gradient(135deg, #e91e63, #f06292); }
+.asset-icon { background: linear-gradient(35deg, #e91e63); }
 .management-icon { background: linear-gradient(135deg, #9c27b0, #ba68c8); }
 .operating-icon { background: linear-gradient(135deg, #00bcd4, #4dd0e1); }
 .brokerage-icon { background: linear-gradient(135deg, #4caf50, #81c784); }
