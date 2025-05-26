@@ -703,7 +703,7 @@ const Offering = () => {
                         )}
                       </div>
                     </div>
-
+                        
                     <div className="container-fluid">
                       <div className="row justify-content-center">
                         <div className="col-12 col-xl-11">
@@ -824,7 +824,8 @@ const Offering = () => {
             isOpen={isComingSoonModalOpen}
             onClose={handleCloseModal}
           />
-          <Footer />    </>
+          <Footer />   
+           </>
       )}
     </>
   );

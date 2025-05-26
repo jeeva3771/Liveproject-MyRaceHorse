@@ -6,11 +6,21 @@ import JustLikelucy from "../../document/justlikelucy.png"
 import Eyepopnruby from "../../document/eyepopnruby.png"
 import Footer from "../../layout/Footer"
 import Notice from "../../component/Notice"
+import { useState, useEffect } from "react"
 
 const Buy = () => {
+  const [ready, setReady] = useState(false);
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setReady(true);
+      }, 1)
+      return () => clearTimeout(timer); // Cleanup
+    }, []);
   const navigate = useNavigate()
   return (
     <>
+     {ready && (
+        <>
       <Header />
       <div className="buy-page">
           <img
@@ -353,6 +363,8 @@ const Buy = () => {
       </div>
       <Notice />
     <Footer />
+    </>
+      )}
     </>
   )
 }
